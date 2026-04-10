@@ -1,16 +1,18 @@
-import { 
-  TextInput, 
-  View, 
-  Text, 
-  Image, 
-  StyleSheet, 
-  Pressable, 
-  KeyboardAvoidingView, 
-  Platform, 
-  ScrollView 
+import FadeInText from "@/components/FadeInText";
+import {
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View
 } from "react-native";
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from "react-native-responsive-screen";
 import useHomeModel from "./model";
+
 
 export default function HomeView ({
   nome,
@@ -31,6 +33,7 @@ export default function HomeView ({
         keyboardShouldPersistTaps="handled"
       >
         <Text style={styles.title}>Bem-vindo!</Text>
+        <Text style={styles.subtitle} > Qual é o seu nome? </Text>
 
         {/* Campo de entrada com ícone de usuário */}
         <View style={styles.inputContainer}>
@@ -55,7 +58,7 @@ export default function HomeView ({
               pressed && { opacity: 0.8 }
             ]}
           >
-            <Text style={styles.buttonText}>Mostrar Nome</Text>
+            <Text style={styles.buttonText}>Confirmar</Text>
           </Pressable>
         </View>
 
@@ -68,7 +71,9 @@ export default function HomeView ({
         )}
 
         {/* Nome exibido */}
-        {mostrarNome && <Text style={styles.nome}>Olá, {nome}!</Text>}
+        {mostrarNome && (<FadeInText style={styles.nome}> {"Olá"}, {nome}! </FadeInText>
+)}
+
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -85,6 +90,11 @@ const styles = StyleSheet.create({
     fontSize: wp("8%"),
     fontWeight: "bold",
     color: "#1E3A8A",
+  },
+  subtitle: {
+    fontSize: wp("3.5%"),
+    fontWeight: "bold",
+    color: "#000000",
     marginBottom: hp("5%"),
   },
   inputContainer: {
@@ -154,7 +164,7 @@ const styles = StyleSheet.create({
     fontSize: wp("4%"),
   },
   nome: {
-    marginTop: hp("4%"),
+    marginTop: hp("3%"),
     fontSize: wp("7%"),
     fontWeight: "bold",
     color: "#1E3A8A",
